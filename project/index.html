@@ -319,6 +319,9 @@ section{position:relative}
   font-size:14px;opacity:.55;
 }
 
+/* mobile-only pill — hidden on desktop */
+.mobile-hero-pill{display:none}
+
 /* floating organic shapes */
 .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none}
 .blob-a{width:420px;height:420px;background:#5DB562;top:-100px;left:-100px;opacity:.25}
@@ -929,11 +932,114 @@ section{position:relative}
   .infobar{grid-template-columns:1fr 1fr;gap:20px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
 }
-@media (max-width: 720px){
-  .nav-links, .nav-cta .btn-ghost{display:none}
+@media (max-width: 767px){
+  /* --- NAV --- */
+  .nav-links, .nav-cta .btn-ghost, .nav-cta .btn-primary{display:none}
   .menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--green-50);color:var(--green-800)}
-  .hero-meta{gap:20px}
-  .hero-meta-item .v{font-size:18px}
+  .nav{padding:8px 8px 8px 16px}
+  .brand{font-size:18px}
+  .brand-mark{width:36px;height:36px}
+
+  /* --- MOBILE HERO PILL --- */
+  .mobile-hero-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px 6px 10px;
+    background:rgba(255,255,255,0.75);
+    border:1px solid var(--line);
+    border-radius:var(--r-pill);
+    margin-bottom:18px;
+    backdrop-filter:blur(8px);
+  }
+  .mobile-hero-pill .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--green-600);
+    box-shadow:0 0 0 3px rgba(46,125,50,0.18);
+    flex:none;
+  }
+  .mobile-hero-pill span:last-child{
+    font-family:var(--mono);font-size:10.5px;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--ink-700);
+  }
+
+  /* --- HERO LAYOUT: columna única, imágenes primero --- */
+  .hero-eyebrow{display:none}
+  .hero-grid{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .hero-visual{order:-1;margin-bottom:32px}
+  .hero-text{order:1}
+
+  /* --- IMÁGENES HERO --- */
+  .hero-visual{
+    position:relative;
+    width:100%;
+    height:250px;
+    min-height:unset;
+    aspect-ratio:unset;
+  }
+  .hero-card.main{
+    inset:0;
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .hero-card.secondary{
+    position:absolute;
+    bottom:-16px;
+    left:10px;
+    width:90px;
+    height:80px;
+    aspect-ratio:unset;
+    border-radius:12px;
+    border:3px solid #fff;
+    box-shadow:var(--sh-2);
+    overflow:hidden;
+  }
+  .hero-card.badge{
+    right:10px;
+    bottom:-14px;
+    left:auto;
+    padding:10px 14px;
+    font-size:11px;
+    gap:8px;
+    animation:none;
+  }
+  .hero-card.badge .av{width:26px;height:26px}
+  .hero-card.badge b{font-size:12px}
+  .hero-card.badge span{font-size:10px}
+
+  /* --- TEXTO HERO --- */
+  .hero-title{font-size:clamp(28px,7vw,40px);margin-top:32px;margin-bottom:14px}
+  .hero-sub{font-size:15px;line-height:1.55;margin-bottom:20px;max-width:100%}
+  .hero-cta{flex-direction:column;gap:10px;margin-bottom:24px}
+  .hero-cta .btn{width:100%;justify-content:center}
+
+  /* --- HERO META (infobar inferior) --- */
+  .hero-meta{
+    display:flex;flex-direction:row;justify-content:center;
+    gap:0;
+    padding:14px 16px;
+    background:var(--cream-2);
+    border-radius:var(--r-md);
+    border:1px solid var(--line);
+    margin-top:8px;
+    max-width:100%;
+  }
+  .hero-meta-item{
+    flex:1;text-align:center;
+    position:relative;
+  }
+  .hero-meta-item + .hero-meta-item::before{
+    content:"·";
+    position:absolute;left:0;top:50%;transform:translateY(-50%);
+    color:var(--ink-300);font-size:16px;
+  }
+  .hero-meta-item .k{font-size:10px;letter-spacing:0.1em;margin-bottom:2px}
+  .hero-meta-item .v{font-size:13px;line-height:1.2}
+
+  /* --- OTRAS SECCIONES MÓVIL --- */
   .infobar{grid-template-columns:1fr;padding:22px;text-align:left}
   .svc-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr 1fr}
@@ -941,9 +1047,6 @@ section{position:relative}
   .ig-cell:nth-child(n+7){display:none}
   .footer-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .nav{padding:8px 8px 8px 16px}
-  .brand{font-size:18px}
-  .brand-mark{width:30px;height:30px}
   .when-wrap{padding:32px 24px}
   .signs{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;align-items:flex-start}
@@ -1081,6 +1184,10 @@ section{position:relative}
   <span class="blob blob-a"></span>
   <span class="blob blob-b"></span>
   <div class="container">
+    <div class="mobile-hero-pill">
+      <span class="dot"></span>
+      <span>Centro Médico Infanto-Juvenil · Quillota</span>
+    </div>
     <div class="hero-grid">
       <div class="hero-text">
         <span class="hero-eyebrow">
