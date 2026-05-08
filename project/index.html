@@ -154,19 +154,12 @@ section{position:relative}
 .nav.is-scrolled{box-shadow:var(--sh-2), inset 0 1px 0 rgba(255,255,255,0.6)}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:22px;line-height:1;color:var(--ink-900)}
 .brand-mark{
-  width:34px;height:34px;border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 30%, #6FBF74 0%, #2E7D32 55%, #1B4D1F 100%);
+  width:34px;height:34px;
+  background: url('uploads/962DD961-DFF8-4DBB-A632-799809F9D363.png') center / contain no-repeat;
   position:relative;
-  box-shadow:inset 0 0 0 2px rgba(255,255,255,0.6), 0 4px 10px -4px rgba(46,125,50,0.5);
 }
 .brand-mark::after{
-  content:"";
-  position:absolute;inset:9px;
-  border-radius:50%;
-  background:radial-gradient(circle at 65% 65%, #FF9326, transparent 60%);
-  filter:blur(3px);
-  opacity:.85;
+  display:none;
 }
 .brand-name b{font-weight:400}
 .brand-name em{font-style:italic;color:var(--green-700)}
@@ -265,21 +258,18 @@ section{position:relative}
   border:1px solid rgba(255,255,255,0.6);
 }
 .hero-card.main{
-  inset: 0 0 12% 8%;
-  background: linear-gradient(135deg, #C8E6CA 0%, #E4F2E5 50%, #FFF6EC 100%);
+  inset: 0;
+  background: transparent;
 }
 .hero-card.float-1{
-  width:46%; aspect-ratio:1;
-  right:-2%; top:6%;
-  background: linear-gradient(140deg, #FFD9A6 0%, #FF9326 80%);
-  border-radius:50%;
-  animation: floaty 7s ease-in-out infinite;
+  display: none;
 }
-.hero-card.float-2{
-  width:38%; aspect-ratio:4/5;
-  left:-3%; bottom:4%;
-  background: linear-gradient(135deg, #FDFBF6 0%, #F4EEE2 100%);
-  animation: floaty 8s ease-in-out -2s infinite;
+.hero-card.secondary{
+  width:28%; aspect-ratio:9/11;
+  left:4%; bottom:8%;
+  background: #fff;
+  border: 4px solid var(--paper);
+  box-shadow: var(--sh-2);
 }
 .hero-card.badge{
   width:auto; height:auto; padding:18px 22px;
@@ -357,6 +347,23 @@ section{position:relative}
 .infobar .heart{display:inline-block;color:var(--green-500)}
 
 /* ============================================
+   MICROFILA
+   ============================================ */
+.microfila{
+  padding:32px 0;
+  text-align:center;
+  background:var(--cream);
+}
+.microfila p{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-500);
+  margin:0;
+}
+
+/* ============================================
    ABOUT
    ============================================ */
 .about{background:var(--cream)}
@@ -403,7 +410,7 @@ section{position:relative}
 .portrait-stack{position:relative;aspect-ratio: 1/1.05;}
 .portrait-stack .imgph{border-radius:var(--r-lg);position:absolute}
 .portrait-stack .p1{inset:0 24% 30% 0; box-shadow:var(--sh-3)}
-.portrait-stack .p2{inset:36% 0 0 30%; box-shadow:var(--sh-3); transform:rotate(2deg)}
+.portrait-stack .p2{width:28%; aspect-ratio:1; right:6%; bottom:8%; box-shadow:var(--sh-2); border:3px solid var(--paper)}
 .portrait-stack .ribbon{
   position:absolute;top:6%;right:-2%;
   background:var(--orange-600);color:#fff;
@@ -982,7 +989,6 @@ section{position:relative}
       <a href="#about">Sobre Epojé</a>
       <a href="#services">Servicios</a>
       <a href="#team">Equipo</a>
-      <a href="#blog">Blog</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contacto</a>
     </div>
@@ -1016,7 +1022,7 @@ section{position:relative}
           Acompañamos el <em>bienestar emocional</em> de niños, adolescentes y <span class="underline-word">familias</span>.
         </h1>
         <p class="hero-sub">
-          En Epojé creemos que cada etapa de la vida merece apoyo, contención y acompañamiento profesional. Evaluación, diagnóstico y tratamiento con un enfoque humano, cálido y cercano.
+          Un espacio profesional y cercano para acompañar cada etapa del desarrollo emocional de niños, adolescentes y familias.
         </p>
         <div class="hero-cta">
           <a href="https://wa.me/56995392524" target="_blank" rel="noopener" class="btn btn-primary">
@@ -1024,7 +1030,7 @@ section{position:relative}
             Agendar atención
           </a>
           <a href="#team" class="btn btn-ghost">
-            Conocer al equipo
+            Conocer el equipo
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -1046,13 +1052,10 @@ section{position:relative}
 
       <div class="hero-visual">
         <div class="hero-card main">
-          <div class="imgph">FOTO PRINCIPAL · familia abrazada<br/>luz cálida natural · 4:5</div>
+          <img src="uploads/B5348D9E-ACCA-411B-9D0F-62749851A1CE.png" alt="Madre e hijo mirándose" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);" />
         </div>
-        <div class="hero-card float-1">
-          <div class="imgph warm" style="border-radius:50%">FOTO 2 · niño sonriendo<br/>mirada cercana</div>
-        </div>
-        <div class="hero-card float-2">
-          <div class="imgph cream">FOTO 3 · sesión<br/>terapéutica cálida</div>
+        <div class="hero-card secondary">
+          <img src="uploads/674B0BF6-3F41-4643-9341-316D7F230A9D.png" alt="Sesión terapéutica con adolescente" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-md);" />
         </div>
         <div class="hero-card badge">
           <div style="display:flex">
@@ -1069,26 +1072,11 @@ section{position:relative}
 </section>
 
 <!-- ============================================
-     INFOBAR
+     MICROFILA
      ============================================ -->
-<div class="container">
-  <div class="infobar">
-    <div class="col lead-col">
-      <span class="heart">●</span> Acompañamos el bienestar emocional de niños y familias.
-      <div style="margin-top:8px;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#C5BFA9">Evaluación · Diagnóstico · Tratamiento</div>
-    </div>
-    <div class="col">
-      <div class="k">Hoy</div>
-      <div class="v" id="todayHours">9:00 — 20:00</div>
-    </div>
-    <div class="col">
-      <div class="k">Teléfono</div>
-      <div class="v"><a href="tel:+56332260900">+56 33 226 0900</a></div>
-    </div>
-    <div class="col">
-      <div class="k">WhatsApp</div>
-      <div class="v"><a href="https://wa.me/56995392524" target="_blank" rel="noopener">+56 9 9539 2524</a></div>
-    </div>
+<div class="microfila">
+  <div class="container">
+    <p>Niños · Adolescentes · Familiar integral · Quillota</p>
   </div>
 </div>
 
@@ -1100,8 +1088,8 @@ section{position:relative}
     <div class="about-grid">
       <aside class="about-aside">
         <div class="portrait-stack">
-          <div class="imgph p1">FOTO · sesión con niño<br/>materiales cálidos · 1:1.2</div>
-          <div class="imgph warm p2">FOTO · padre e hija<br/>conversando · 1:1</div>
+          <img src="uploads/E737295B-C2AE-4497-9AB0-E8434B54A2CE.png" alt="Niño dibujando en sesión terapéutica" class="p1" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);" />
+          <img src="uploads/1461A34C-5221-4188-AFEA-03493290B134.png" alt="Dibujo infantil del árbol de Epojé" class="p2" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg);" />
           <div class="ribbon">desde 2018</div>
         </div>
       </aside>
@@ -1109,9 +1097,8 @@ section{position:relative}
         <span class="eyebrow">— Sobre Epojé</span>
         <h2 class="about-h2" style="margin-top:14px">Un espacio para <em>detenerse</em>, mirar con calma y volver a sentirse en equilibrio.</h2>
         <div class="about-text">
-          <p><strong>Epojé</strong> es un centro médico infanto-juvenil dedicado a la salud emocional y el bienestar de niños, adolescentes y sus familias. Nuestro nombre evoca la pausa filosófica: ese momento necesario para suspender el ruido y observar lo que realmente está pasando.</p>
-          <p>Trabajamos desde un enfoque humano e integral, donde cada proceso se construye junto a las familias. No creemos en diagnósticos apurados ni soluciones únicas: creemos en el tiempo, en la escucha y en el acompañamiento profesional sostenido.</p>
-          <p>Cada niño, adolescente y adulto que entra a Epojé encuentra un espacio cálido, reservado y profesional, donde lo emocional se trata con la misma seriedad que cualquier otra dimensión de la salud.</p>
+          <p>Epojé es un centro médico infanto-juvenil que acompaña procesos de evaluación, orientación y atención psicológica desde una mirada cercana, humana e integral. Nos enfocamos en que cada niño, adolescente y familia pueda sentirse escuchado, comprendido y acompañado con calma y profesionalismo.</p>
+          <p>Trabajamos junto a las familias, respetando los tiempos y necesidades de cada proceso. Nuestro enfoque prioriza la escucha, el vínculo terapéutico y el acompañamiento sostenido, creando un espacio cálido, reservado y profesional donde la salud emocional se aborda con la seriedad y sensibilidad que merece.</p>
         </div>
 
         <div class="value-grid">
@@ -1405,51 +1392,6 @@ section{position:relative}
   </div>
 </section>
 
-<!-- ============================================
-     BLOG
-     ============================================ -->
-<section class="blog section-pad" id="blog" data-screen-label="08 Blog">
-  <div class="container">
-    <div class="section-head">
-      <div class="left">
-        <span class="eyebrow">— Blog y recursos</span>
-        <h2 style="margin-top:14px">Lecturas para <em>acompañar</em>.</h2>
-      </div>
-      <div class="right">
-        Reflexiones y recursos prácticos del equipo de Epojé para familias en distintas etapas.
-      </div>
-    </div>
-    <div class="blog-grid">
-      <article class="post">
-        <div class="post-img imgph">PORTADA · niño y luz cálida</div>
-        <div class="post-body">
-          <div class="meta"><span class="cat">Bienestar infantil</span><span class="dot"></span><span>6 min</span></div>
-          <h3>Cuando el cuerpo de un niño dice lo que las palabras todavía no.</h3>
-          <p>Dolor de estómago, despertares nocturnos, rabietas inesperadas: cómo leer las señales emocionales de la infancia.</p>
-          <span class="read">Leer artículo →</span>
-        </div>
-      </article>
-      <article class="post">
-        <div class="post-img imgph warm">PORTADA · adolescente al sol</div>
-        <div class="post-body">
-          <div class="meta"><span class="cat">Adolescencia</span><span class="dot"></span><span>8 min</span></div>
-          <h3>Hablar con un adolescente sin que se cierre la puerta.</h3>
-          <p>Una guía para transformar conversaciones cotidianas en momentos de vínculo real.</p>
-          <span class="read">Leer artículo →</span>
-        </div>
-      </article>
-      <article class="post">
-        <div class="post-img imgph cream">PORTADA · familia abrazada</div>
-        <div class="post-body">
-          <div class="meta"><span class="cat">Crianza emocional</span><span class="dot"></span><span>5 min</span></div>
-          <h3>Crianza con presencia: lo que sí podemos hacer cuando no tenemos respuestas.</h3>
-          <p>Acompañar no siempre es resolver. A veces es estar, escuchar y sostener.</p>
-          <span class="read">Leer artículo →</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================
      FAQ
@@ -1627,7 +1569,6 @@ section{position:relative}
           <li><a href="#about">Sobre Epojé</a></li>
           <li><a href="#services">Servicios</a></li>
           <li><a href="#team">Equipo</a></li>
-          <li><a href="#blog">Blog</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
         </ul>
       </div>
@@ -1675,7 +1616,6 @@ section{position:relative}
     <a href="#about">Sobre Epojé</a>
     <a href="#services">Servicios</a>
     <a href="#team">Equipo</a>
-    <a href="#blog">Blog</a>
     <a href="#faq">Preguntas frecuentes</a>
     <a href="#contact">Contacto</a>
     <a href="https://wa.me/56995392524" target="_blank" rel="noopener" class="btn btn-primary">Agendar por WhatsApp</a>
