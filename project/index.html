@@ -546,6 +546,7 @@ section{position:relative}
   border:1px solid var(--line);
   padding:24px;
   text-align:center;
+  display:flex;flex-direction:column;
   transition:transform 240ms ease, box-shadow 240ms ease;
 }
 .member:hover{transform:translateY(-4px);box-shadow:var(--sh-3)}
@@ -559,10 +560,11 @@ section{position:relative}
   overflow:hidden;
 }
 .avatar-circle .imgph{border-radius:50%;font-size:9px}
+.avatar-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .member:nth-child(2n) .avatar-circle{background:linear-gradient(135deg, var(--orange-100), var(--green-100))}
-.member h4{font-family:var(--serif);font-size:24px;color:var(--ink-900);margin-bottom:4px}
+.member h4{font-family:var(--serif);font-size:21px;line-height:1.15;color:var(--ink-900);margin-bottom:6px;text-wrap:balance}
 .member .role{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--green-700);margin-bottom:12px}
-.member p{font-size:14px;color:var(--ink-500);line-height:1.5;margin-bottom:14px}
+.member p{font-size:14px;color:var(--ink-500);line-height:1.5;margin-bottom:14px;flex:1}
 .member .tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .member .tag{font-size:11.5px;padding:4px 10px;border-radius:var(--r-pill);background:var(--green-50);color:var(--green-800)}
 
@@ -922,7 +924,7 @@ section{position:relative}
   .about-aside{position:static}
   .when-grid{grid-template-columns:1fr;gap:40px}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
-  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(3,1fr)}
   .ig-grid{grid-template-columns:repeat(4,1fr)}
   .ig-cell:nth-child(n+9){display:none}
   .t-grid{grid-template-columns:1fr}
@@ -1042,7 +1044,12 @@ section{position:relative}
   /* --- OTRAS SECCIONES MÓVIL --- */
   .infobar{grid-template-columns:1fr;padding:22px;text-align:left}
   .svc-grid{grid-template-columns:1fr}
-  .team-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .member{padding:18px 14px}
+  .member h4{font-size:17px}
+  .member p{font-size:13px}
+  .member .tag{font-size:10.5px;padding:3px 8px}
+  .avatar-circle{width:104px;height:104px}
   .ig-grid{grid-template-columns:repeat(3,1fr)}
   .ig-cell:nth-child(n+7){display:none}
   .footer-grid{grid-template-columns:1fr}
@@ -1453,38 +1460,94 @@ section{position:relative}
         <h2 style="margin-top:14px">Profesionales con <em>experiencia</em> y un trato cercano.</h2>
       </div>
       <div class="right">
-        Cada profesional del equipo tiene formación específica en infancia, adolescencia y trabajo con familias.
+        Un equipo multidisciplinario de psiquiatría, pediatría, psicología, terapia ocupacional, fonoaudiología y educación diferencial, con formación específica en infancia y adolescencia.
       </div>
     </div>
 
+    <!-- FOTOS DEL EQUIPO
+         Para agregar el retrato de cada profesional, reemplaza el bloque:
+             <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+         por:
+             <div class="avatar-circle"><img src="uploads/NOMBRE-ARCHIVO.jpg" alt="Nombre del profesional" /></div>
+         La foto se recorta sola en círculo (object-fit:cover). Ideal: imagen cuadrada, mínimo 400x400px. -->
+
     <div class="team-grid">
       <article class="member">
-        <div class="avatar-circle"><div class="imgph">RETRATO<br/>profesional</div></div>
-        <h4>Dra. Carla Rivas</h4>
-        <div class="role">Directora · Psicóloga infantil</div>
-        <p>15 años acompañando procesos terapéuticos con niños y sus familias.</p>
-        <div class="tags"><span class="tag">Infancia</span><span class="tag">Vínculo</span></div>
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Dr. Jorge Valdivia Rojas</h4>
+        <div class="role">Psiquiatra infanto-juvenil</div>
+        <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
+        <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
       </article>
       <article class="member">
-        <div class="avatar-circle"><div class="imgph">RETRATO<br/>profesional</div></div>
-        <h4>Felipe Soto</h4>
-        <div class="role">Psicólogo adolescente</div>
-        <p>Especialista en adolescencia, ansiedad, identidad y autoestima.</p>
-        <div class="tags"><span class="tag">Adolescencia</span><span class="tag">Ansiedad</span></div>
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Dra. Catalina Mahaluf Recasens</h4>
+        <div class="role">Psiquiatra infanto-juvenil</div>
+        <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
+        <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
       </article>
       <article class="member">
-        <div class="avatar-circle"><div class="imgph">RETRATO<br/>profesional</div></div>
-        <h4>María Torres</h4>
-        <div class="role">Terapeuta familiar</div>
-        <p>Trabajo sistémico con familias en procesos de cambio o crisis.</p>
-        <div class="tags"><span class="tag">Familia</span><span class="tag">Sistémico</span></div>
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Dr. Denis Gómez Recabarren</h4>
+        <div class="role">Psiquiatra infanto-juvenil</div>
+        <p>Atención psiquiátrica infanto-juvenil en modalidad online.</p>
+        <div class="tags"><span class="tag">Online</span></div>
       </article>
       <article class="member">
-        <div class="avatar-circle"><div class="imgph">RETRATO<br/>profesional</div></div>
-        <h4>Diego Morales</h4>
-        <div class="role">Neuropsicólogo infantil</div>
-        <p>Evaluaciones neuropsicológicas y orientación a colegios y familias.</p>
-        <div class="tags"><span class="tag">Evaluación</span><span class="tag">Aprendizaje</span></div>
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Dra. Myriam Vivencio Arriagada</h4>
+        <div class="role">Pediatra</div>
+        <p>Control y acompañamiento pediátrico integral del desarrollo.</p>
+        <div class="tags"><span class="tag">Pediatría</span><span class="tag">Desarrollo</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Claudia Montes del Río</h4>
+        <div class="role">Psicóloga clínica infanto-juvenil</div>
+        <p>Certificación WISC y WAIS, casos judicializados y acompañamiento escolar.</p>
+        <div class="tags"><span class="tag">WISC · WAIS</span><span class="tag">Judicializados</span><span class="tag">Escolar</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Macarena Bustamante San Martín</h4>
+        <div class="role">Psicóloga clínica infanto-juvenil</div>
+        <p>Acompañamiento escolar y emocional. Método PEERS para favorecer habilidades sociales.</p>
+        <div class="tags"><span class="tag">WISC-V</span><span class="tag">Método PEERS</span><span class="tag">Escolar</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Pamela Álvarez Ponce</h4>
+        <div class="role">Psicóloga clínica infanto-juvenil</div>
+        <p>Especialista en método EMDR para el procesamiento de experiencias difíciles.</p>
+        <div class="tags"><span class="tag">EMDR</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Elisabet Fierro Malebrán</h4>
+        <div class="role">Psicóloga infanto-juvenil</div>
+        <p>Trabajo en trauma, evaluación psicométrica y casos judicializados.</p>
+        <div class="tags"><span class="tag">Trauma</span><span class="tag">WISC-V · WAIS</span><span class="tag">Judicializados</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Luis Paredes Bernal</h4>
+        <div class="role">Terapeuta ocupacional infanto-juvenil</div>
+        <p>Estimulación temprana y alteraciones del neurodesarrollo.</p>
+        <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Estimulación temprana</span><span class="tag">Neurodesarrollo</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Catalina Rosales Muñoz</h4>
+        <div class="role">Fonoaudióloga infanto-juvenil</div>
+        <p>Evaluación e intervención en lenguaje y comunicación.</p>
+        <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Lenguaje</span></div>
+      </article>
+      <article class="member">
+        <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
+        <h4>Karim Correa Maturana</h4>
+        <div class="role">Educadora diferencial</div>
+        <p>Evaluación de dificultades del aprendizaje y apoyo educativo.</p>
+        <div class="tags"><span class="tag">EVALÚA</span><span class="tag">TABULATEST</span><span class="tag">Aprendizaje</span></div>
       </article>
     </div>
   </div>
