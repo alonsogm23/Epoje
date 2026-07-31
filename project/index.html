@@ -563,10 +563,31 @@ section{position:relative}
 .avatar-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .member:nth-child(2n) .avatar-circle{background:linear-gradient(135deg, var(--orange-100), var(--green-100))}
 .member h4{font-family:var(--serif);font-size:21px;line-height:1.15;color:var(--ink-900);margin-bottom:6px;text-wrap:balance}
-.member .role{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--green-700);margin-bottom:12px}
-.member p{font-size:14px;color:var(--ink-500);line-height:1.5;margin-bottom:14px;flex:1}
+.member .role{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--green-700);margin-bottom:0}
+.member p{font-size:14px;color:var(--ink-500);line-height:1.5;margin-bottom:14px}
 .member .tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .member .tag{font-size:11.5px;padding:4px 10px;border-radius:var(--r-pill);background:var(--green-50);color:var(--green-800)}
+
+/* member expand/collapse */
+.member-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  margin:16px auto 0;
+  padding:8px 16px;
+  border-radius:var(--r-pill);
+  background:var(--green-50);color:var(--green-800);
+  font-size:12.5px;font-weight:600;
+  transition:background 200ms ease, color 200ms ease;
+}
+.member-toggle:hover{background:var(--green-100)}
+.member-toggle .chevron{width:13px;height:13px;flex:none;transition:transform 280ms ease}
+.member-toggle[aria-expanded="true"]{background:var(--green-700);color:#fff}
+.member-toggle[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.member:nth-child(2n) .member-toggle{background:var(--orange-50);color:var(--orange-700)}
+.member:nth-child(2n) .member-toggle:hover{background:var(--orange-100)}
+.member:nth-child(2n) .member-toggle[aria-expanded="true"]{background:var(--orange-600);color:#fff}
+.member-detail{max-height:0;overflow:hidden;transition:max-height 360ms ease}
+.member-detail-inner{padding-top:16px}
+.member-detail-inner p{margin-bottom:14px}
 
 /* ============================================
    INSTAGRAM
@@ -1476,78 +1497,166 @@ section{position:relative}
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Dr. Jorge Valdivia Rojas</h4>
         <div class="role">Psiquiatra infanto-juvenil</div>
-        <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
-        <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
+            <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Dra. Catalina Mahaluf Recasens</h4>
         <div class="role">Psiquiatra infanto-juvenil</div>
-        <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
-        <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Evaluación y tratamiento psiquiátrico de niños y adolescentes.</p>
+            <div class="tags"><span class="tag">Presencial</span><span class="tag">Online</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Dr. Denis Gómez Recabarren</h4>
         <div class="role">Psiquiatra infanto-juvenil</div>
-        <p>Atención psiquiátrica infanto-juvenil en modalidad online.</p>
-        <div class="tags"><span class="tag">Online</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Atención psiquiátrica infanto-juvenil en modalidad online.</p>
+            <div class="tags"><span class="tag">Online</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Dra. Myriam Vivencio Arriagada</h4>
         <div class="role">Pediatra</div>
-        <p>Control y acompañamiento pediátrico integral del desarrollo.</p>
-        <div class="tags"><span class="tag">Pediatría</span><span class="tag">Desarrollo</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Control y acompañamiento pediátrico integral del desarrollo.</p>
+            <div class="tags"><span class="tag">Pediatría</span><span class="tag">Desarrollo</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Claudia Montes del Río</h4>
         <div class="role">Psicóloga clínica infanto-juvenil</div>
-        <p>Certificación WISC y WAIS, casos judicializados y acompañamiento escolar.</p>
-        <div class="tags"><span class="tag">WISC · WAIS</span><span class="tag">Judicializados</span><span class="tag">Escolar</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Certificación WISC y WAIS, casos judicializados y acompañamiento escolar.</p>
+            <div class="tags"><span class="tag">WISC · WAIS</span><span class="tag">Judicializados</span><span class="tag">Escolar</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Macarena Bustamante San Martín</h4>
         <div class="role">Psicóloga clínica infanto-juvenil</div>
-        <p>Acompañamiento escolar y emocional. Método PEERS para favorecer habilidades sociales.</p>
-        <div class="tags"><span class="tag">WISC-V</span><span class="tag">Método PEERS</span><span class="tag">Escolar</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Acompañamiento escolar y emocional. Método PEERS para favorecer habilidades sociales.</p>
+            <div class="tags"><span class="tag">WISC-V</span><span class="tag">Método PEERS</span><span class="tag">Escolar</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Pamela Álvarez Ponce</h4>
         <div class="role">Psicóloga clínica infanto-juvenil</div>
-        <p>Especialista en método EMDR para el procesamiento de experiencias difíciles.</p>
-        <div class="tags"><span class="tag">EMDR</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Especialista en método EMDR para el procesamiento de experiencias difíciles.</p>
+            <div class="tags"><span class="tag">EMDR</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Elisabet Fierro Malebrán</h4>
         <div class="role">Psicóloga infanto-juvenil</div>
-        <p>Trabajo en trauma, evaluación psicométrica y casos judicializados.</p>
-        <div class="tags"><span class="tag">Trauma</span><span class="tag">WISC-V · WAIS</span><span class="tag">Judicializados</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Trabajo en trauma, evaluación psicométrica y casos judicializados.</p>
+            <div class="tags"><span class="tag">Trauma</span><span class="tag">WISC-V · WAIS</span><span class="tag">Judicializados</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Luis Paredes Bernal</h4>
         <div class="role">Terapeuta ocupacional infanto-juvenil</div>
-        <p>Estimulación temprana y alteraciones del neurodesarrollo.</p>
-        <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Estimulación temprana</span><span class="tag">Neurodesarrollo</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Estimulación temprana y alteraciones del neurodesarrollo.</p>
+            <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Estimulación temprana</span><span class="tag">Neurodesarrollo</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Catalina Rosales Muñoz</h4>
         <div class="role">Fonoaudióloga infanto-juvenil</div>
-        <p>Evaluación e intervención en lenguaje y comunicación.</p>
-        <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Lenguaje</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Evaluación e intervención en lenguaje y comunicación.</p>
+            <div class="tags"><span class="tag">ADOS · ADIR</span><span class="tag">Lenguaje</span></div>
+          </div>
+        </div>
       </article>
       <article class="member">
         <div class="avatar-circle"><div class="imgph">FOTO<br/>pendiente</div></div>
         <h4>Karim Correa Maturana</h4>
         <div class="role">Educadora diferencial</div>
-        <p>Evaluación de dificultades del aprendizaje y apoyo educativo.</p>
-        <div class="tags"><span class="tag">EVALÚA</span><span class="tag">TABULATEST</span><span class="tag">Aprendizaje</span></div>
+        <button class="member-toggle" type="button" aria-expanded="false">
+          <span class="txt">+ Información</span>
+          <svg class="chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="member-detail">
+          <div class="member-detail-inner">
+            <p>Evaluación de dificultades del aprendizaje y apoyo educativo.</p>
+            <div class="tags"><span class="tag">EVALÚA</span><span class="tag">TABULATEST</span><span class="tag">Aprendizaje</span></div>
+          </div>
+        </div>
       </article>
     </div>
   </div>
@@ -1892,6 +2001,25 @@ faqItems.forEach(d => {
     }
   });
   // sync .open class for styling (details.open already styles, kept for clarity)
+});
+
+// TEAM — independent expand/collapse per card, animated height
+document.querySelectorAll('.member-toggle').forEach(btn => {
+  const detail = btn.nextElementSibling;
+  const inner = detail.querySelector('.member-detail-inner');
+  const txt = btn.querySelector('.txt');
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      detail.style.maxHeight = '0px';
+      btn.setAttribute('aria-expanded', 'false');
+      txt.textContent = '+ Información';
+    } else {
+      detail.style.maxHeight = inner.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+      txt.textContent = '− Ocultar';
+    }
+  });
 });
 
 // HOURS
