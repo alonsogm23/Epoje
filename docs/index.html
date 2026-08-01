@@ -374,40 +374,16 @@ section{position:relative}
   display:grid;
   grid-template-columns: 1fr 1.2fr;
   gap:clamp(40px, 6vw, 100px);
-  align-items:start;
+  align-items:center;
 }
 .about-aside{
-  position:sticky;top:120px;
+  position:static;
 }
 .about-h2{margin-bottom:24px}
 .about-h2 em{font-style:italic;color:var(--green-700)}
 .about-text p + p{margin-top:16px;}
 .about-text{color:var(--ink-700);font-size:17.5px;line-height:1.65;max-width:58ch}
 .about-text strong{color:var(--ink-900);font-weight:600}
-
-.value-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:14px;
-  margin-top:40px;
-}
-.value{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--r-md);
-  padding:22px;
-  transition:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-}
-.value:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--green-300)}
-.value .v-ico{
-  width:42px;height:42px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--green-50);color:var(--green-700);
-  margin-bottom:14px;
-}
-.value h4{font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:-0.005em;margin-bottom:6px;color:var(--ink-900)}
-.value p{font-size:14px;color:var(--ink-500);line-height:1.5}
-.value:nth-child(2) .v-ico, .value:nth-child(3) .v-ico{background:var(--orange-50);color:var(--orange-700)}
 
 /* about portrait collage */
 .portrait-stack{position:relative;aspect-ratio: 1/1.05;}
@@ -489,7 +465,7 @@ section{position:relative}
 /* ============================================
    WHEN-TO-CONSULT
    ============================================ */
-.when{background:var(--cream)}
+.when{background:var(--cream-2)}
 .when-wrap{
   background:linear-gradient(135deg, #FDFBF6 0%, #F1F8F2 100%);
   border:1px solid var(--line);
@@ -539,7 +515,7 @@ section{position:relative}
 /* ============================================
    TEAM
    ============================================ */
-.team{background:var(--cream-2)}
+.team{background:var(--cream)}
 .team-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:18px}
 .member{
   background:var(--paper);
@@ -931,6 +907,70 @@ section{position:relative}
 @keyframes fabRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
 
 /* ============================================
+   QUICK NAV (botón flotante de navegación)
+   Se apila justo encima del FAB de WhatsApp
+   (fab: bottom 24px + 60px alto → este arranca en 98px)
+   ============================================ */
+.qnav-btn{
+  position:fixed;bottom:98px;right:28px;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--paper);color:var(--green-700);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);
+  box-shadow:var(--sh-3);
+  z-index:70;
+  transition:transform 220ms ease, box-shadow 220ms ease, background 200ms ease;
+}
+.qnav-btn:hover{transform:scale(1.06);background:var(--green-50)}
+.qnav-btn:focus-visible{outline:2px solid var(--green-700);outline-offset:3px}
+.qnav-lines{position:relative;width:20px;height:14px;display:block}
+.qnav-lines span{
+  position:absolute;left:0;width:100%;height:2px;border-radius:2px;
+  background:currentColor;
+  transition:transform 280ms cubic-bezier(.2,.8,.2,1), opacity 200ms ease;
+}
+.qnav-lines span:nth-child(1){top:0}
+.qnav-lines span:nth-child(2){top:6px}
+.qnav-lines span:nth-child(3){top:12px}
+.qnav-btn[aria-expanded="true"]{background:var(--green-700);color:#fff;border-color:var(--green-700)}
+.qnav-btn[aria-expanded="true"] .qnav-lines span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.qnav-btn[aria-expanded="true"] .qnav-lines span:nth-child(2){opacity:0}
+.qnav-btn[aria-expanded="true"] .qnav-lines span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.qnav-panel{
+  position:fixed;bottom:162px;right:28px;
+  width:min(272px, calc(100vw - 44px));
+  max-height:calc(100vh - 190px);
+  overflow-y:auto;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-3);
+  padding:10px;
+  z-index:71;
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;
+  transform:translateY(10px) scale(.97);
+  transform-origin:bottom right;
+  transition:opacity 240ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), visibility 240ms;
+}
+.qnav-panel.open{opacity:1;visibility:visible;transform:none}
+.qnav-panel .qnav-title{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--ink-500);
+  padding:8px 12px 6px;
+}
+.qnav-panel a{
+  display:flex;align-items:center;
+  min-height:44px;padding:10px 12px;
+  border-radius:var(--r-md);
+  font-size:15px;font-weight:500;color:var(--ink-700);
+  transition:background 160ms ease, color 160ms ease;
+}
+.qnav-panel a:hover{background:var(--green-50);color:var(--green-800)}
+.qnav-panel a:focus-visible{outline:2px solid var(--green-700);outline-offset:-2px}
+
+/* ============================================
    REVEAL ON SCROLL
    ============================================ */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 700ms ease, transform 700ms ease}
@@ -1317,37 +1357,6 @@ section{position:relative}
           <p>Epojé es un centro médico infanto-juvenil que acompaña procesos de evaluación, orientación y atención psicológica desde una mirada cercana, humana e integral. Nos enfocamos en que cada niño, adolescente y familia pueda sentirse escuchado, comprendido y acompañado con calma y profesionalismo.</p>
           <p>Trabajamos junto a las familias, respetando los tiempos y necesidades de cada proceso. Nuestro enfoque prioriza la escucha, el vínculo terapéutico y el acompañamiento sostenido, creando un espacio cálido, reservado y profesional donde la salud emocional se aborda con la seriedad y sensibilidad que merece.</p>
         </div>
-
-        <div class="value-grid">
-          <div class="value">
-            <div class="v-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </div>
-            <h4>Apoyo emocional</h4>
-            <p>Escucha activa, contención y vínculo profesional cercano en cada sesión.</p>
-          </div>
-          <div class="value">
-            <div class="v-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <h4>Enfoque familiar</h4>
-            <p>Trabajamos con todo el sistema, no sólo con quien consulta.</p>
-          </div>
-          <div class="value">
-            <div class="v-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <h4>Tiempo y proceso</h4>
-            <p>Procesos respetuosos del ritmo único de cada niño y adolescente.</p>
-          </div>
-          <div class="value">
-            <div class="v-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            </div>
-            <h4>Equipo profesional</h4>
-            <p>Especialistas en psicología infantil, adolescente y vínculos familiares.</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1428,40 +1437,9 @@ section{position:relative}
 </section>
 
 <!-- ============================================
-     WHEN TO CONSULT
-     ============================================ -->
-<section class="when section-pad" data-screen-label="04 Cuándo consultar">
-  <div class="container">
-    <div class="when-wrap">
-      <div class="when-grid">
-        <div>
-          <span class="when-tag"><span class="heart">♥</span> Para padres y cuidadores</span>
-          <h2>¿Cuándo es buen momento para <em>consultar</em>?</h2>
-          <p class="when-intro">No hay que esperar una crisis. Si notas señales que se repiten o que afectan la rutina de tu hijo/a, conversar con un profesional siempre puede ayudar.</p>
-          <a href="https://wa.me/56995392524" target="_blank" rel="noopener" class="btn btn-orange">
-            Conversar con un profesional
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <div class="signs">
-          <div class="sign"><span class="dot"></span><span>Cambios bruscos de ánimo</span></div>
-          <div class="sign"><span class="dot"></span><span>Ansiedad o miedos persistentes</span></div>
-          <div class="sign"><span class="dot"></span><span>Aislamiento o retraimiento</span></div>
-          <div class="sign"><span class="dot"></span><span>Baja autoestima</span></div>
-          <div class="sign"><span class="dot"></span><span>Estrés familiar sostenido</span></div>
-          <div class="sign"><span class="dot"></span><span>Problemas escolares</span></div>
-          <div class="sign"><span class="dot"></span><span>Dificultades sociales</span></div>
-          <div class="sign"><span class="dot"></span><span>Conductas emocionales intensas</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================
      TEAM
      ============================================ -->
-<section class="team section-pad" id="team" data-screen-label="05 Equipo">
+<section class="team section-pad" id="team" data-screen-label="04 Equipo">
   <div class="container">
     <div class="section-head">
       <div class="left">
@@ -1646,6 +1624,37 @@ section{position:relative}
           </div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHEN TO CONSULT
+     ============================================ -->
+<section class="when section-pad" id="cuando" data-screen-label="05 Cuándo consultar">
+  <div class="container">
+    <div class="when-wrap">
+      <div class="when-grid">
+        <div>
+          <span class="when-tag"><span class="heart">♥</span> Para padres y cuidadores</span>
+          <h2>¿Cuándo es buen momento para <em>consultar</em>?</h2>
+          <p class="when-intro">No hay que esperar una crisis. Si notas señales que se repiten o que afectan la rutina de tu hijo/a, conversar con un profesional siempre puede ayudar.</p>
+          <a href="https://wa.me/56995392524" target="_blank" rel="noopener" class="btn btn-orange">
+            Conversar con un profesional
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="signs">
+          <div class="sign"><span class="dot"></span><span>Cambios bruscos de ánimo</span></div>
+          <div class="sign"><span class="dot"></span><span>Ansiedad o miedos persistentes</span></div>
+          <div class="sign"><span class="dot"></span><span>Aislamiento o retraimiento</span></div>
+          <div class="sign"><span class="dot"></span><span>Baja autoestima</span></div>
+          <div class="sign"><span class="dot"></span><span>Estrés familiar sostenido</span></div>
+          <div class="sign"><span class="dot"></span><span>Problemas escolares</span></div>
+          <div class="sign"><span class="dot"></span><span>Dificultades sociales</span></div>
+          <div class="sign"><span class="dot"></span><span>Conductas emocionales intensas</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1940,6 +1949,21 @@ section{position:relative}
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.3 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 .5C5.6.5.5 5.6.5 12c0 2 .5 4 1.5 5.7L0 24l6.4-1.7c1.7.9 3.6 1.4 5.6 1.4 6.4 0 11.5-5.1 11.5-11.5S18.4.5 12 .5z"/></svg>
 </a>
 
+<!-- quick nav flotante -->
+<button class="qnav-btn" id="qnavBtn" type="button" aria-label="Navegación rápida" aria-expanded="false" aria-controls="qnavPanel" aria-haspopup="true">
+  <span class="qnav-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<nav class="qnav-panel" id="qnavPanel" aria-label="Navegación rápida">
+  <div class="qnav-title">Ir a</div>
+  <a href="#top">Inicio</a>
+  <a href="#about">Sobre Epojé</a>
+  <a href="#services">Servicios</a>
+  <a href="#team">Equipo profesional</a>
+  <a href="#cuando">¿Cuándo consultar?</a>
+  <a href="#faq">Preguntas frecuentes</a>
+  <a href="#contact">Contacto</a>
+</nav>
+
 <!-- mobile drawer -->
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-panel">
@@ -1979,6 +2003,31 @@ document.getElementById('menuToggle').addEventListener('click', () => drawer.cla
 document.getElementById('drawerClose').addEventListener('click', () => drawer.classList.remove('open'));
 drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.classList.remove('open'); });
 drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+// QUICK NAV — botón flotante siempre visible
+const qnavBtn = document.getElementById('qnavBtn');
+const qnavPanel = document.getElementById('qnavPanel');
+const setQnav = (open) => {
+  qnavPanel.classList.toggle('open', open);
+  qnavBtn.setAttribute('aria-expanded', String(open));
+};
+qnavBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  setQnav(qnavBtn.getAttribute('aria-expanded') !== 'true');
+});
+// cerrar al elegir una sección (el scroll suave lo da html{scroll-behavior:smooth})
+qnavPanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setQnav(false)));
+// cerrar al tocar fuera del panel
+document.addEventListener('click', (e) => {
+  if (qnavPanel.classList.contains('open') && !qnavPanel.contains(e.target)) setQnav(false);
+});
+// cerrar con Escape y devolver el foco al botón
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && qnavPanel.classList.contains('open')) {
+    setQnav(false);
+    qnavBtn.focus();
+  }
+});
 
 // FAQ — single-open accordion behavior using <details>
 const faqItems = document.querySelectorAll('.faq-item');
@@ -2054,7 +2103,7 @@ const io = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('section, .infobar, .svc, .member, .post, .tcard, .ig-cell, .value').forEach(el => {
+document.querySelectorAll('section, .infobar, .member, .tcard, .ig-cell').forEach(el => {
   el.classList.add('reveal');
   io.observe(el);
 });
