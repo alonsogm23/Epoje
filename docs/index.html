@@ -438,52 +438,53 @@ section{position:relative}
 .section-head h2 em{font-style:italic;color:var(--green-700)}
 .section-head .right{font-size:16px;color:var(--ink-500);max-width:340px}
 
-.svc-grid{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:14px;
-}
-.svc{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--r-lg);
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-  min-height:260px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  transition:transform 280ms cubic-bezier(.2,.8,.2,1), box-shadow 280ms ease, border-color 280ms ease, background 280ms ease;
-  cursor:pointer;
-}
-.svc::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
-  background:linear-gradient(90deg, var(--green-700), var(--green-500));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 360ms ease;
-}
-.svc:hover{transform:translateY(-4px);box-shadow:var(--sh-3);border-color:var(--green-300)}
-.svc:hover::after{transform:scaleX(1)}
-.svc .num{font-family:var(--mono);font-size:11px;color:var(--ink-300);letter-spacing:0.12em}
-.svc .ico{
-  width:48px;height:48px;border-radius:14px;
-  background:var(--green-50);color:var(--green-700);
-  display:flex;align-items:center;justify-content:center;
-  margin:auto 0 16px 0;
-  transition:transform 280ms ease, background 280ms ease;
-}
-.svc:hover .ico{transform:scale(1.06) rotate(-3deg);background:var(--green-100)}
-.svc:nth-child(2n) .ico{background:var(--orange-50);color:var(--orange-700)}
-.svc:nth-child(2n):hover .ico{background:var(--orange-100)}
-.svc h3{font-family:var(--sans);font-weight:600;font-size:18px;letter-spacing:-0.005em;line-height:1.25;margin-bottom:8px;color:var(--ink-900)}
-.svc p{font-size:14px;color:var(--ink-500);line-height:1.55}
-.svc .arrow{
-  position:absolute;top:24px;right:24px;
-  width:32px;height:32px;border-radius:50%;
-  background:var(--green-50);color:var(--green-700);
-  display:flex;align-items:center;justify-content:center;
-  transition:background 260ms ease, transform 260ms ease, color 260ms ease;
-}
-.svc:hover .arrow{background:var(--green-700);color:#fff;transform:translate(2px,-2px)}
+/* services — editorial header (dedicated, not shared with .section-head) */
+.svc-head{margin-bottom:64px}
+.svc-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.svc-eyebrow .rule{display:block;width:36px;height:1px;background:var(--orange-600);flex:none}
+.svc-eyebrow span:last-child{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-700)}
+.svc-head-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);gap:32px;align-items:end}
+.svc-head-title{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,60px);line-height:1.1;letter-spacing:-0.01em;color:var(--ink-900);margin:0;max-width:640px;text-wrap:balance}
+.svc-head-title em{font-style:italic;color:var(--green-700)}
+.svc-head-sub{font-size:16px;line-height:1.6;color:var(--ink-500);margin:0;max-width:340px}
+
+/* services — group headers */
+.svc-group-head{display:flex;align-items:baseline;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--line-strong);margin-bottom:32px;flex-wrap:wrap}
+.svc-group-title{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(26px,2.8vw,38px);line-height:1.1;color:var(--ink-900)}
+.svc-group-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-500)}
+
+/* group 1 — evaluación y diagnóstico */
+.svc-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:96px}
+.svc-hero{background:var(--green-900);color:var(--cream);border-radius:var(--r-xl);padding:clamp(36px,4vw,56px);min-height:380px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;box-shadow:var(--sh-3)}
+.svc-flat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(36px,4vw,56px);min-height:380px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;box-shadow:var(--sh-2)}
+.svc-kicker{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange-300)}
+.svc-kicker.warm{color:var(--orange-700)}
+.svc-hero-body,.svc-flat-body{display:flex;flex-direction:column;gap:18px}
+.svc-hero h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(38px,4.8vw,62px);line-height:1.05;letter-spacing:-0.01em;color:var(--cream);margin:0;text-wrap:balance}
+.svc-hero p{font-size:17px;line-height:1.6;color:rgba(250,246,238,.78);max-width:36ch;margin:0}
+.svc-flat h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.8vw,48px);line-height:1.1;letter-spacing:-0.01em;color:var(--ink-900);margin:0;text-wrap:balance}
+.svc-flat p{font-size:17px;line-height:1.6;color:var(--ink-500);max-width:36ch;margin:0}
+
+/* group 2 — terapia */
+.svc-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-bottom:24px}
+.svc-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:40px 36px;display:flex;flex-direction:column;gap:14px}
+.svc-card h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink-900);margin:0}
+.svc-card p{font-size:15px;line-height:1.6;color:var(--ink-500);margin:0}
+.svc-card-accent{background:var(--orange-50);border-color:rgba(224,107,0,.16);margin-top:32px}
+.svc-card-accent h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:34px;line-height:1.1;color:var(--orange-700)}
+.svc-card-accent p{color:var(--ink-700)}
+
+/* group 2 — banda tratamiento */
+.svc-band{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(36px,4vw,52px);margin-bottom:96px}
+.svc-band h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-0.01em;color:var(--ink-900);margin:0}
+.svc-band p{font-size:17px;line-height:1.6;color:var(--ink-500);margin:0;padding-left:40px;border-left:1px solid rgba(245,124,0,.45)}
+
+/* group 3 — alrededor del proceso (sin tarjeta, solo filete superior) */
+.svc-grid-flat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
+.svc-flat-item{display:flex;flex-direction:column;gap:14px;padding-top:24px;border-top:2px solid var(--green-700)}
+.svc-flat-item.warm{border-top-color:var(--orange-600)}
+.svc-flat-item h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink-900);margin:0}
+.svc-flat-item p{font-size:16px;line-height:1.6;color:var(--ink-500);margin:0;max-width:44ch}
 
 /* ============================================
    WHEN-TO-CONSULT
@@ -944,7 +945,9 @@ section{position:relative}
   .about-grid{grid-template-columns:1fr;gap:50px}
   .about-aside{position:static}
   .when-grid{grid-template-columns:1fr;gap:40px}
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-head-grid{grid-template-columns:1fr;gap:16px}
+  .svc-grid-3{grid-template-columns:repeat(2,1fr)}
+  .svc-band{grid-template-columns:1fr;gap:20px}
   .team-grid{grid-template-columns:repeat(3,1fr)}
   .ig-grid{grid-template-columns:repeat(4,1fr)}
   .ig-cell:nth-child(n+9){display:none}
@@ -1064,7 +1067,12 @@ section{position:relative}
 
   /* --- OTRAS SECCIONES MÓVIL --- */
   .infobar{grid-template-columns:1fr;padding:22px;text-align:left}
-  .svc-grid{grid-template-columns:1fr}
+  .svc-grid-2{grid-template-columns:1fr;gap:16px;margin-bottom:56px}
+  .svc-grid-3{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+  .svc-card-accent{margin-top:0}
+  .svc-band{margin-bottom:56px}
+  .svc-band p{padding-left:20px}
+  .svc-grid-flat{grid-template-columns:1fr;gap:32px}
   .team-grid{grid-template-columns:1fr 1fr;gap:12px}
   .member{padding:18px 14px}
   .member h4{font-size:17px}
@@ -1138,7 +1146,12 @@ section{position:relative}
   .portrait-stack .p2{width:34%}
 
   /* services */
-  .svc-grid{grid-template-columns:1fr}
+  .svc-head{margin-bottom:40px}
+  .svc-head-sub{max-width:100%}
+  .svc-group-head{margin-bottom:24px}
+  .svc-hero,.svc-flat{padding:28px 24px;min-height:unset}
+  .svc-card{padding:28px 24px}
+  .svc-band{padding:28px 24px}
   .section-head{margin-bottom:40px}
   .section-head .right{font-size:14px}
 
@@ -1345,96 +1358,71 @@ section{position:relative}
      ============================================ -->
 <section class="services section-pad" id="services" data-screen-label="03 Servicios">
   <div class="container">
-    <div class="section-head">
-      <div class="left">
-        <span class="eyebrow">— Nuestros servicios</span>
-        <h2 style="margin-top:14px">Acompañamiento <em>integral</em> en cada etapa del crecimiento.</h2>
-      </div>
-      <div class="right">
-        Combinamos evaluación, diagnóstico y tratamiento desde un equipo multidisciplinario, con foco en niños, adolescentes y familias.
+    <div class="svc-head">
+      <div class="svc-eyebrow"><span class="rule"></span><span>Servicios</span></div>
+      <div class="svc-head-grid">
+        <h2 class="svc-head-title">Un mismo acompañamiento, <em>distintas formas de empezar.</em></h2>
+        <p class="svc-head-sub">Cada familia llega en un momento distinto del camino. Estos son los espacios donde ese camino puede comenzar.</p>
       </div>
     </div>
 
-    <div class="svc-grid">
-      <div class="svc">
-        <div class="num">01</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="3"/><path d="M5 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/><circle cx="18" cy="5" r="2"/></svg>
+    <div class="svc-group-head">
+      <span class="svc-group-title">El punto de partida</span>
+      <span class="svc-group-tag">Evaluación y diagnóstico</span>
+    </div>
+    <div class="svc-grid-2">
+      <article class="svc-hero">
+        <span class="svc-kicker">Primer encuentro</span>
+        <div class="svc-hero-body">
+          <h3>Evaluación emocional</h3>
+          <p>Procesos de evaluación con instrumentos validados, devolución y plan personalizado.</p>
         </div>
+      </article>
+      <article class="svc-flat">
+        <span class="svc-kicker warm">Claridad para la familia</span>
+        <div class="svc-flat-body">
+          <h3>Diagnóstico clínico</h3>
+          <p>Diagnóstico riguroso, con devolución cuidada a la familia y orientación clara.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="svc-group-head">
+      <span class="svc-group-title">El trabajo terapéutico</span>
+      <span class="svc-group-tag">Terapia</span>
+    </div>
+    <div class="svc-grid-3">
+      <article class="svc-card">
         <h3>Psicología infantil</h3>
         <p>Atención especializada para niños desde los 4 años, con técnicas lúdicas y vínculo cercano.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">02</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        </div>
+      </article>
+      <article class="svc-card svc-card-accent">
         <h3>Psicología adolescente</h3>
         <p>Espacio seguro y reservado para adolescentes en una etapa de cambios y nuevas búsquedas.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">03</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
+      </article>
+      <article class="svc-card">
         <h3>Terapia familiar</h3>
         <p>Mejorar la comunicación, los vínculos y la convivencia desde un trabajo conjunto.</p>
-      </div>
+      </article>
+    </div>
+    <article class="svc-band">
+      <h3>Tratamiento</h3>
+      <p>Planes terapéuticos personalizados, sostenidos y revisados en conjunto con las familias.</p>
+    </article>
 
-      <div class="svc">
-        <div class="num">04</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H3v10h6V11zm6-8h-6v18h6V3zm6 4h-6v14h6V7z"/></svg>
-        </div>
-        <h3>Evaluación emocional</h3>
-        <p>Procesos de evaluación con instrumentos validados, devolución y plan personalizado.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">05</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-        </div>
-        <h3>Diagnóstico clínico</h3>
-        <p>Diagnóstico riguroso, con devolución cuidada a la familia y orientación clara.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">06</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <h3>Tratamiento</h3>
-        <p>Planes terapéuticos personalizados, sostenidos y revisados en conjunto con las familias.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">07</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+    <div class="svc-group-head">
+      <span class="svc-group-title">Alrededor del proceso</span>
+      <span class="svc-group-tag">Acompañamiento</span>
+    </div>
+    <div class="svc-grid-flat">
+      <article class="svc-flat-item">
         <h3>Acompañamiento integral</h3>
         <p>Coordinación con colegios, pediatras y otros profesionales para un cuidado coherente.</p>
-      </div>
-
-      <div class="svc">
-        <div class="num">08</div>
-        <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
-        <div class="ico">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-        </div>
+      </article>
+      <article class="svc-flat-item warm">
         <h3>Orientación a padres</h3>
         <p>Espacios para padres y cuidadores: herramientas, apoyo y acompañamiento práctico.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
