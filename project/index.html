@@ -715,6 +715,7 @@ section{position:relative}
   display:grid;
   grid-template-columns:1.05fr 0.95fr;
   gap:60px;
+  align-items:start;
   position:relative;
   margin-top:60px;
 }
@@ -759,48 +760,6 @@ section{position:relative}
   position:relative;
 }
 .contact-cta .btn-wa:hover{background:var(--orange-100)}
-
-.form-card{
-  background:rgba(253,251,246,0.04);
-  border:1px solid rgba(253,251,246,0.14);
-  border-radius:var(--r-xl);
-  padding:36px;
-  backdrop-filter:blur(8px);
-}
-.form-card h3{color:#fff;margin-bottom:6px}
-.form-card .sub{color:#B5B0A0;margin-bottom:28px;font-size:14.5px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C5BFA9}
-.field input, .field textarea, .field select{
-  background:rgba(253,251,246,0.06);
-  border:1px solid rgba(253,251,246,0.14);
-  border-radius:var(--r-md);
-  padding:14px 16px;
-  color:#fff;
-  font:inherit;font-size:15px;
-  transition:border-color 200ms ease, background 200ms ease;
-}
-.field input:focus, .field textarea:focus, .field select:focus{
-  outline:none;border-color:var(--green-300);background:rgba(253,251,246,0.10);
-}
-.field input::placeholder, .field textarea::placeholder{color:#8B867A}
-.field.full{grid-column:1/-1}
-.field textarea{min-height:110px;resize:vertical}
-.form-card .btn-submit{
-  width:100%;justify-content:center;margin-top:6px;
-  padding:16px;font-size:16px;font-weight:600;
-}
-.form-msg{
-  margin-top:14px;
-  padding:14px 18px;border-radius:var(--r-md);
-  background:rgba(168,216,171,0.18);color:var(--green-300);
-  border:1px solid rgba(168,216,171,0.4);
-  font-size:14px;
-  display:none;
-}
-.form-msg.show{display:block;animation:fadeIn 280ms ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
 /* hours */
 .hours-card{
@@ -908,11 +867,12 @@ section{position:relative}
 
 /* ============================================
    QUICK NAV (botón flotante de navegación)
-   Se apila justo encima del FAB de WhatsApp
-   (fab: bottom 24px + 60px alto → este arranca en 98px)
+   Esquina inferior IZQUIERDA — el FAB de WhatsApp
+   sigue en la inferior derecha, sin cambios, así que
+   no compiten visualmente ni necesitan apilarse.
    ============================================ */
 .qnav-btn{
-  position:fixed;bottom:98px;right:28px;
+  position:fixed;bottom:24px;left:24px;
   width:52px;height:52px;border-radius:50%;
   background:var(--paper);color:var(--green-700);
   display:flex;align-items:center;justify-content:center;
@@ -938,9 +898,9 @@ section{position:relative}
 .qnav-btn[aria-expanded="true"] .qnav-lines span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 .qnav-panel{
-  position:fixed;bottom:162px;right:28px;
-  width:min(272px, calc(100vw - 44px));
-  max-height:calc(100vh - 190px);
+  position:fixed;bottom:88px;left:24px;
+  width:min(272px, calc(100vw - 48px));
+  max-height:calc(100vh - 116px);
   overflow-y:auto;
   background:var(--paper);
   border:1px solid var(--line);
@@ -951,7 +911,7 @@ section{position:relative}
   display:flex;flex-direction:column;gap:2px;
   opacity:0;visibility:hidden;
   transform:translateY(10px) scale(.97);
-  transform-origin:bottom right;
+  transform-origin:bottom left;
   transition:opacity 240ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), visibility 240ms;
 }
 .qnav-panel.open{opacity:1;visibility:visible;transform:none}
@@ -1122,7 +1082,6 @@ section{position:relative}
   .ig-grid{grid-template-columns:repeat(3,1fr)}
   .ig-cell:nth-child(n+7){display:none}
   .footer-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
   .when-wrap{padding:32px 24px}
   .signs{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;align-items:flex-start}
@@ -1212,7 +1171,6 @@ section{position:relative}
 
   /* contact */
   .contact-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
   .contact-cta h3{font-size:28px}
 
   /* faq */
@@ -1850,38 +1808,6 @@ section{position:relative}
           </a>
         </div>
 
-        <form class="form-card" id="contactForm" style="margin-top:20px" novalidate>
-          <h3>O escríbenos</h3>
-          <div class="sub">Te respondemos en horario de atención.</div>
-          <div class="form-row">
-            <div class="field"><label for="fName">Nombre</label><input id="fName" name="name" type="text" placeholder="Tu nombre" required /></div>
-            <div class="field"><label for="fPhone">Teléfono</label><input id="fPhone" name="phone" type="tel" placeholder="+56 9 ..." required /></div>
-          </div>
-          <div class="form-row">
-            <div class="field full"><label for="fMail">Correo electrónico</label><input id="fMail" name="email" type="email" placeholder="tu@correo.cl" required /></div>
-          </div>
-          <div class="form-row">
-            <div class="field full">
-              <label for="fInterest">Motivo de consulta</label>
-              <select id="fInterest" name="interest">
-                <option>Psicología infantil</option>
-                <option>Psicología adolescente</option>
-                <option>Terapia familiar</option>
-                <option>Evaluación o diagnóstico</option>
-                <option>Orientación a padres</option>
-                <option>Otro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field full"><label for="fMsg">Mensaje</label><textarea id="fMsg" name="message" placeholder="Cuéntanos brevemente cómo podemos ayudarte..." required></textarea></div>
-          </div>
-          <button type="submit" class="btn btn-orange btn-submit">
-            Enviar mensaje
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          </button>
-          <div class="form-msg" id="formMsg">✓ Gracias por escribir. Te responderemos a la brevedad.</div>
-        </form>
       </div>
     </div>
   </div>
@@ -2083,16 +2009,6 @@ if (todayInfo) {
   document.getElementById('todayHours').textContent = todayInfo[1];
 }
 
-// FORM
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(form));
-  if (!data.name || !data.email || !data.message) return;
-  document.getElementById('formMsg').classList.add('show');
-  form.reset();
-  setTimeout(() => document.getElementById('formMsg').classList.remove('show'), 5000);
-});
 
 // REVEAL ON SCROLL
 const io = new IntersectionObserver((entries) => {
