@@ -841,19 +841,26 @@ section{position:relative}
     var(--ink-700);
 }
 .mapblock-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+/* El mapa se ve completo desde el primer render — este overlay es
+   transparente e invisible, solo existe para absorber el primer
+   tap/scroll (pointer-events:auto) y evitar que el iframe "atrape"
+   el swipe de la pagina en mobile. Tras el primer clic se desactiva
+   por completo y el mapa queda con pan/zoom normal. */
 .mapblock-overlay{
   position:absolute;inset:0;z-index:2;
-  background:rgba(31,42,32,0.12);
+  background:transparent;
   border:0;padding:0;margin:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
+  display:block;
   transition:opacity 220ms ease, visibility 220ms;
 }
 .mapblock-overlay .hint{
-  display:inline-flex;align-items:center;gap:8px;
+  position:absolute;left:12px;bottom:12px;
+  display:inline-flex;align-items:center;gap:6px;
   background:rgba(253,251,246,0.94);color:var(--ink-900);
-  font-size:13px;font-weight:600;
-  padding:10px 16px;border-radius:var(--r-pill);
+  font-size:12px;font-weight:600;
+  padding:7px 12px;border-radius:var(--r-pill);
   box-shadow:var(--sh-2);
+  pointer-events:none;
 }
 .mapblock-overlay.active{opacity:0;visibility:hidden;pointer-events:none}
 .mapblock-directions{
@@ -1876,15 +1883,15 @@ section{position:relative}
         <div class="mapblock" id="mapblock">
           <iframe
             class="mapblock-iframe"
-            src="https://www.google.com/maps?q=O%27Higgins+661,+Quillota,+Chile&output=embed"
+            src="https://maps.google.com/maps?q=O%27Higgins+661,+Quillota,+Chile&output=embed"
             width="100%" height="100%"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="Mapa — O'Higgins 661, Quillota"></iframe>
           <button type="button" class="mapblock-overlay" id="mapOverlay" aria-label="Activar interacción con el mapa">
             <span class="hint">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              Toca para interactuar con el mapa
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              Toca para interactuar
             </span>
           </button>
           <a class="mapblock-directions" href="https://www.google.com/maps/dir/?api=1&destination=O%27Higgins+661,+Quillota,+Chile" target="_blank" rel="noopener" aria-label="Cómo llegar a O'Higgins 661, Quillota en Google Maps">
