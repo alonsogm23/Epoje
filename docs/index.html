@@ -770,11 +770,15 @@ section{position:relative}
   backdrop-filter:blur(10px);
 }
 .hours-card .k{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#C5BFA9;margin-bottom:14px}
-.hours-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed rgba(253,251,246,0.12);font-size:14.5px}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed rgba(253,251,246,0.12);font-size:14.5px;position:relative}
 .hours-row:last-child{border-bottom:0}
-.hours-row.today{color:var(--green-300);font-weight:500}
-.hours-row.today::before{content:"●";margin-right:8px;font-size:10px}
+.hours-row.today{color:var(--green-300);font-weight:600}
+.hours-row.today::before{
+  content:"";position:absolute;left:-14px;top:50%;transform:translateY(-50%);
+  width:6px;height:6px;border-radius:50%;background:var(--green-300);
+}
 .hours-row .day{color:#EBE7DC}
+.hours-row.today .day{color:var(--green-300)}
 .hours-row .closed{color:var(--orange-300)}
 
 /* mock map */
@@ -789,32 +793,33 @@ section{position:relative}
     repeating-linear-gradient(90deg, rgba(168,216,171,0.10) 0 36px, transparent 36px 80px),
     var(--ink-700);
 }
-.mapblock .pin{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);
-  display:flex;flex-direction:column;align-items:center;
+.mapblock-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.mapblock-overlay{
+  position:absolute;inset:0;z-index:2;
+  background:rgba(31,42,32,0.12);
+  border:0;padding:0;margin:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 220ms ease, visibility 220ms;
 }
-.mapblock .pin .pulse{
-  width:20px;height:20px;border-radius:50%;
-  background:var(--orange-600);
-  box-shadow:0 0 0 0 rgba(245,124,0,0.6);
-  animation:mapPulse 2s ease-out infinite;
+.mapblock-overlay .hint{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(253,251,246,0.94);color:var(--ink-900);
+  font-size:13px;font-weight:600;
+  padding:10px 16px;border-radius:var(--r-pill);
+  box-shadow:var(--sh-2);
 }
-@keyframes mapPulse{
-  0%{box-shadow:0 0 0 0 rgba(245,124,0,0.6)}
-  100%{box-shadow:0 0 0 22px rgba(245,124,0,0)}
+.mapblock-overlay.active{opacity:0;visibility:hidden;pointer-events:none}
+.mapblock-directions{
+  position:absolute;bottom:14px;right:14px;z-index:3;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orange-600);color:#fff;
+  font-size:13px;font-weight:600;
+  padding:10px 16px;border-radius:var(--r-pill);
+  box-shadow:0 8px 20px -8px rgba(245,124,0,0.6);
+  transition:background 200ms ease, transform 200ms ease;
 }
-.mapblock .pin .lbl{
-  margin-top:6px;background:#fff;color:var(--ink-900);
-  font-size:12px;font-weight:600;padding:6px 12px;border-radius:var(--r-pill);
-  box-shadow:var(--sh-2);white-space:nowrap;
-}
-.mapblock .grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(168,216,171,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168,216,171,0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+.mapblock-directions:hover{background:var(--orange-700);transform:translateY(-1px)}
+.mapblock-directions .ico{width:15px;height:15px;flex:none}
 
 /* ============================================
    FOOTER
@@ -1172,6 +1177,8 @@ section{position:relative}
   /* contact */
   .contact-grid{grid-template-columns:1fr}
   .contact-cta h3{font-size:28px}
+  .mapblock-overlay .hint{font-size:11.5px;padding:8px 12px;text-align:center}
+  .mapblock-directions{font-size:12px;padding:8px 14px;bottom:10px;right:10px}
 
   /* faq */
   .faq-q{font-size:15px;padding:16px 18px}
@@ -1789,12 +1796,24 @@ section{position:relative}
           <div id="hoursList"></div>
         </div>
 
-        <div class="mapblock" aria-label="Mapa O'Higgins 661 Quillota">
-          <div class="grid"></div>
-          <div class="pin">
-            <span class="pulse"></span>
-            <span class="lbl">O'Higgins 661, Quillota</span>
-          </div>
+        <div class="mapblock" id="mapblock">
+          <iframe
+            class="mapblock-iframe"
+            src="https://www.google.com/maps?q=O%27Higgins+661,+Quillota,+Chile&output=embed"
+            width="100%" height="100%"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa — O'Higgins 661, Quillota"></iframe>
+          <button type="button" class="mapblock-overlay" id="mapOverlay" aria-label="Activar interacción con el mapa">
+            <span class="hint">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              Toca para interactuar con el mapa
+            </span>
+          </button>
+          <a class="mapblock-directions" href="https://www.google.com/maps/dir/?api=1&destination=O%27Higgins+661,+Quillota,+Chile" target="_blank" rel="noopener" aria-label="Cómo llegar a O'Higgins 661, Quillota en Google Maps">
+            <svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cómo llegar
+          </a>
         </div>
       </div>
 
@@ -2007,6 +2026,13 @@ HOURS.forEach(([d, h, idx]) => {
 const todayInfo = HOURS.find(h => h[2] === today);
 if (todayInfo) {
   document.getElementById('todayHours').textContent = todayInfo[1];
+}
+
+// MAP OVERLAY — el mapa solo responde a scroll/pan/zoom después
+// de un primer clic/tap, así no "atrapa" el swipe de la página
+const mapOverlay = document.getElementById('mapOverlay');
+if (mapOverlay) {
+  mapOverlay.addEventListener('click', () => mapOverlay.classList.add('active'));
 }
 
 
