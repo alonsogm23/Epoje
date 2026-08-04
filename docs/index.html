@@ -595,6 +595,53 @@ section{position:relative}
   color:var(--ink-700);font-weight:500;
 }
 
+/* publicaciones reales embebidas — 2x2 en tablet/desktop, 1 col en mobile.
+   Instagram exige min-width:326px en sus embeds oficiales: a 2 columnas
+   dentro del .ig-grid de 6 pistas ese ancho nunca alcanza los 326px en
+   ningun breakpoint (incluido el "2x2" de <=480px), asi que van en su
+   propio grid dedicado, con ancho de columna siempre >= 326px. */
+.ig-embeds{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:20px;
+  margin-bottom:40px;
+}
+.ig-embed-card{
+  position:relative;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  box-shadow:var(--sh-1);
+}
+.ig-embed-badge{
+  position:absolute;top:14px;right:14px;z-index:2;
+  background:rgba(253,251,246,0.92);backdrop-filter:blur(4px);
+  border-radius:var(--r-pill);padding:5px 12px;
+  font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink-700);
+  box-shadow:var(--sh-1);
+  pointer-events:none;
+}
+/* skeleton de carga: fondo animado en el bloque .instagram-media.
+   Instagram inyecta su iframe adentro una vez procesado (embed.js),
+   que queda opaco por encima y tapa el skeleton — no requiere JS
+   para ocultarlo. */
+.ig-embed-card blockquote.instagram-media{
+  display:flex;align-items:center;justify-content:center;
+  margin:0;width:100%;min-height:360px;
+  background:linear-gradient(110deg, var(--cream-2) 8%, var(--paper) 18%, var(--cream-2) 33%);
+  background-size:200% 100%;
+  animation:igSkeleton 1.6s ease-in-out infinite;
+}
+.ig-embed-card blockquote.instagram-media a{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.06em;
+  text-transform:uppercase;color:var(--ink-500);
+  padding:0 24px;text-align:center;
+}
+@keyframes igSkeleton{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
 .ig-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
 .ig-handle{display:flex;align-items:center;gap:14px}
 .ig-avatar{
@@ -1084,6 +1131,8 @@ section{position:relative}
   .member p{font-size:13px}
   .member .tag{font-size:10.5px;padding:3px 8px}
   .avatar-circle{width:104px;height:104px}
+  .ig-embeds{grid-template-columns:1fr;gap:16px}
+  .ig-embed-card blockquote.instagram-media{min-height:300px}
   .ig-grid{grid-template-columns:repeat(3,1fr)}
   .ig-cell:nth-child(n+7){display:none}
   .footer-grid{grid-template-columns:1fr}
@@ -1642,6 +1691,34 @@ section{position:relative}
         </a>
       </div>
     </div>
+
+    <div class="ig-embeds">
+      <article class="ig-embed-card">
+        <span class="ig-embed-badge">Reel</span>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXZ9WEziP2I/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/reel/DXZ9WEziP2I/" target="_blank" rel="noopener">Ver esta publicación en Instagram — 5 señales para conversar con tu hijo/a</a>
+        </blockquote>
+      </article>
+      <article class="ig-embed-card">
+        <span class="ig-embed-badge">Post</span>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DW65uD_CFpd/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DW65uD_CFpd/" target="_blank" rel="noopener">Ver esta publicación en Instagram — Ansiedad infantil explicada</a>
+        </blockquote>
+      </article>
+      <article class="ig-embed-card">
+        <span class="ig-embed-badge">Post</span>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXSQjXXCNvj/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DXSQjXXCNvj/" target="_blank" rel="noopener">Ver esta publicación en Instagram — Rutinas que regulan</a>
+        </blockquote>
+      </article>
+      <article class="ig-embed-card">
+        <span class="ig-embed-badge">Post</span>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXUFQi2CNqo/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/p/DXUFQi2CNqo/" target="_blank" rel="noopener">Ver esta publicación en Instagram — Adolescencia y silencio</a>
+        </blockquote>
+      </article>
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
 
     <div class="ig-grid">
       <div class="ig-cell"><div class="imgph">POST · 5 señales para conversar con tu hijo/a</div><span class="reel-badge">Post</span><div class="overlay">5 señales que dicen "necesito hablar contigo"</div></div>
