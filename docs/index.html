@@ -187,7 +187,9 @@ section{position:relative}
 }
 .brand-name{display:flex;flex-direction:column;align-items:flex-start;gap:3px;white-space:nowrap}
 .brand-label{font-family:var(--sans);font-size:10px;font-weight:600;line-height:1.3;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-700)}
-.brand-name em{font-family:var(--serif);font-size:38px;font-weight:400;font-style:italic;line-height:1.05;color:var(--green-800)}
+.brand-wordmark{display:block;position:relative;width:138px;height:54px;overflow:hidden;mix-blend-mode:multiply}
+/* Display the supplied lettering at its original proportions, excluding the wide white margins. */
+.brand-wordmark img{position:absolute;left:50%;top:50%;width:231%;height:auto;max-width:none;transform:translate(-50%,-50%)}
 .brand:focus-visible{outline:2px solid var(--green-700);outline-offset:5px;border-radius:8px}
 
 .nav-links{display:flex;align-items:center;gap:6px}
@@ -1027,9 +1029,11 @@ section{position:relative}
 /* ============================================
    RESPONSIVE
    ============================================ */
-@media (max-width: 1024px){
+@media (max-width: 1100px){
   .nav-links{display:none}
   .menu-toggle{display:inline-flex}
+}
+@media (max-width: 1024px){
   .hero-grid{grid-template-columns:1fr;gap:50px}
   .hero-visual{aspect-ratio:5/4;min-height:420px}
   .about-grid{grid-template-columns:1fr;gap:50px}
@@ -1056,7 +1060,7 @@ section{position:relative}
   .brand{gap:10px}
   .brand-mark{width:56px;height:56px}
   .brand-label{font-size:9px;letter-spacing:0.1em}
-  .brand-name em{font-size:32px}
+  .brand-wordmark{width:116px;height:46px}
 
   /* --- MOBILE HERO PILL --- */
   .mobile-hero-pill{
@@ -1201,7 +1205,7 @@ section{position:relative}
 .drawer-head .brand{padding:0;gap:8px}
 .drawer-head .brand-mark{width:44px;height:44px}
 .drawer-head .brand-label{font-size:8px;letter-spacing:0.08em}
-.drawer-head .brand-name em{font-size:28px}
+.drawer-head .brand-wordmark{width:100px;height:40px}
 .drawer-head button{flex:none}
 .drawer-panel a{padding:14px 12px;border-radius:var(--r-md);font-size:18px;font-weight:500;color:var(--ink-700)}
 .drawer-panel a:hover{background:var(--green-50);color:var(--green-800)}
@@ -1396,7 +1400,7 @@ section{position:relative}
   <nav class="nav" id="nav">
     <a href="#top" class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name"><span class="brand-label">Centro Médico</span><em>Epojé</em></span>
+      <span class="brand-name"><span class="brand-label">Centro Médico</span><span class="brand-wordmark"><img src="uploads/epoje-nombre-original.jpeg" alt="Epojé" width="1179" height="227" decoding="async" /></span></span>
     </a>
     <div class="nav-links" role="navigation">
       <a href="#about">Sobre Epojé</a>
@@ -2080,7 +2084,7 @@ section{position:relative}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name"><span class="brand-label">Centro Médico</span><em>Epojé</em></span></a>
+        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name"><span class="brand-label">Centro Médico</span><span class="brand-wordmark"><img src="uploads/epoje-nombre-original.jpeg" alt="Epojé" width="1179" height="227" decoding="async" /></span></span></a>
         <p class="footer-message">Construyendo bienestar emocional para Niños-Adolescente-Jóvenes-Familias.</p>
         <div class="social-row">
           <a class="social-btn" href="https://www.instagram.com/epojecentromedico/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -2154,7 +2158,7 @@ section{position:relative}
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-panel">
     <div class="drawer-head">
-      <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name"><span class="brand-label">Centro Médico</span><em>Epojé</em></span></a>
+      <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name"><span class="brand-label">Centro Médico</span><span class="brand-wordmark"><img src="uploads/epoje-nombre-original.jpeg" alt="Epojé" width="1179" height="227" decoding="async" /></span></span></a>
       <button id="drawerClose" aria-label="Cerrar" style="width:36px;height:36px;border-radius:50%;background:var(--cream);">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
